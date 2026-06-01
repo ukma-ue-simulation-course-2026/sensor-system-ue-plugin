@@ -1,0 +1,9 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.SensorSystem.cpp.obj": [
+			"PerModuleInline.gen.cpp.obj",
+			"SensorSystem.cpp.obj"
+		]
+	}
+}
