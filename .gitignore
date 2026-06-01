@@ -1,0 +1,19 @@
+ # Unreal Engine folders
+Binaries/
+Intermediate/
+Saved/
+.vs/
+
+# Visual Studio / Rider
+*.sln
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+
+# Logs
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
