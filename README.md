@@ -43,3 +43,22 @@ Window → Developer Tools → Output Log
 SensorPing called with: *InputValue*
 
 <img width="532" height="170" alt="image" src="https://github.com/user-attachments/assets/c69751da-665f-4bc2-b27f-5095745da688" />
+
+---
+
+<br/><br/><br/>
+# Щоб додати *гіроскоп* до якогось Actor:
+## 1. Додати до Actor компоненти Gyroscope та Battery:
+<img width="320" height="156" alt="image" src="https://github.com/user-attachments/assets/61876c73-fcd2-462a-87e8-2e160b58b297" />
+
+
+## 2. Встановити в цьому Actor необхідні поля (головний StaticMesh, та додану на попередньому кроці батарею) для гіроскопа при запуску
+<img width="1124" height="296" alt="image" src="https://github.com/user-attachments/assets/f16487cc-44c7-4b2f-b2fe-66e7e4f62191" />
+
+
+## 3. Щоб читати дані з гіроскопа, слід викликати `Get Angular Velocity` з компонента `Gyroscope`
+<img width="593" height="246" alt="image" src="https://github.com/user-attachments/assets/a9cc9aa3-cf6b-4aa8-a73b-19f2a3dda8f8" />
+
+
+## 4. Щоб дивитися заряд батареї, слід читати поле `Battery` з компонента `Battery`
+<img width="524" height="182" alt="image" src="https://github.com/user-attachments/assets/d4b411cd-f9fc-437e-968a-ba6172e2da1c" />
