@@ -1,4 +1,4 @@
-#include "LidarComponent.h"
+#include "Components/LidarComponent.h"
 #include "Subsystems/SensorInterferenceSubsystem.h"
 #include "Engine/World.h"
 
@@ -62,9 +62,15 @@ void ULidarComponent::ScanOnce()
         ? InterferenceSubsystem->GetInterferenceAtLocation(GetOwner()->GetActorLocation())
         : 0.f;
 
-    FVector StartLocation = GetComponentLocation();
-    FVector Forward = GetForwardVector();
-    FVector Up = GetUpVector();
+    AActor* Owner = GetOwner();
+    if (!Owner)
+    {
+        return;
+    }
+
+    FVector StartLocation = Owner->GetActorLocation();
+    FVector Forward = Owner->GetActorForwardVector();
+    FVector Up = Owner->GetActorUpVector();
 
     FCollisionQueryParams QueryParams;
     QueryParams.AddIgnoredActor(GetOwner());
