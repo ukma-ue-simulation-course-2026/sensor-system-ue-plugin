@@ -28,6 +28,7 @@ public:
 
     ULidarComponent();
 
+    virtual void BeginPlay();
     virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
     // +- x centimeters
@@ -50,7 +51,7 @@ public:
     void ScanOnce();
 
     UFUNCTION(BlueprintCallable, Category="Lidar")
-    void SetContinuousScan(bool bEnable);
+    void SetContinuousScan(bool enabled);
 
     UFUNCTION(BlueprintCallable, Category="Lidar")
     bool HasNewData() const;
@@ -61,7 +62,7 @@ public:
 private:
 
     TArray<FLidarDataPoint> LatestData;
-    bool bHasNewData = false;
+    bool hasNewData = false;
     bool bContinuousScan = false;
     float TimeSinceLastScan = 0.f;
 };

@@ -8,12 +8,25 @@ ULidarComponent::ULidarComponent()
     PowerPerUse = 1.0f;
 }
 
+void ULidarComponent::BeginPlay()
+{
+    Super::BeginPlay();
+    // UE_LOG(LogTemp, Warning, TEXT("LIDAR: Begins existing."));
+    SetBatteryComponent(GetOwner()->FindComponentByClass<UBatteryComponent>());
+    if (!Battery)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("LIDAR: Didn't find battery."));
+    }
+}
+
 void ULidarComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
     Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+    // UE_LOG(LogTemp, Warning, TEXT("LIDAR: Tick!"));
 
     if (!bContinuousScan)
     {
+        // UE_LOG(LogTemp, Warning, TEXT("LIDAR: Continuous scan not happening."));
         return;
     }
 
@@ -28,9 +41,9 @@ void ULidarComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
     }
 }
 
-void ULidarComponent::SetContinuousScan(bool bEnable)
+void ULidarComponent::SetContinuousScan(bool enabled)
 {
-    bContinuousScan = bEnable;
+    bContinuousScan = enabled;
     if (bContinuousScan)
     {
         TimeSinceLastScan = 0.f;
@@ -39,24 +52,27 @@ void ULidarComponent::SetContinuousScan(bool bEnable)
 
 bool ULidarComponent::HasNewData() const
 {
-    return bHasNewData;
+    return hasNewData;
 }
 
 TArray<FLidarDataPoint> ULidarComponent::GetLatestData()
 {
-    bHasNewData = false;
+    hasNewData = false;
     return LatestData;
 }
 
 void ULidarComponent::ScanOnce()
 {
+    // UE_LOG(LogTemp, Warning, TEXT("LIDAR: Scan!"));
     if (!ConsumePower())
     {
+        // UE_LOG(LogTemp, Warning, TEXT("LIDAR: Scan failed because ConsumePower returned false!"));
         return;
     }
+    // UE_LOG(LogTemp, Warning, TEXT("LIDAR: Scanning %d points..."), PPR);
 
     LatestData.Empty(PPR);
-    bHasNewData = true;
+    hasNewData = true;
 
     float Interference = InterferenceSubsystem
         ? InterferenceSubsystem->GetInterferenceAtLocation(GetOwner()->GetActorLocation())
