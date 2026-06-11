@@ -62,3 +62,13 @@ SensorPing called with: *InputValue*
 
 ## 4. Щоб дивитися заряд батареї, слід читати поле `Battery` з компонента `Battery`
 <img width="524" height="182" alt="image" src="https://github.com/user-attachments/assets/d4b411cd-f9fc-437e-968a-ba6172e2da1c" />
+
+<br/><br/><br/>
+# Візуальний сеснор MK1Eyeball
+Так само додається до блупрінта як і героскоп, має зафіксовані значення FieldOfView і відстані на яку може дивитись.
+Щоб побачити дебажну відображення того що саме зараз бачить датчик використовуйте консольну команду Sensors.VisibilityDebugShow 1
+
+!ВАЖЛИВО! щоб датчик міг бачити цілі важливо щоб вони були позначені тегом Target
+<img width="532" height="452" alt="image" src="https://github.com/user-attachments/assets/be1084f4-88bb-4ee7-a812-12c67efe0fbe" />
+
+
